@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medical ID — William Frederick Weppner III</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f7f7f5;
+      --light-gray: #ebebeb;
+      --mid-gray: #999;
+      --dark: #1a1a1a;
+      --charcoal: #2e2e2e;
+      --red: #c0392b;
+      --red-light: #fdf0ef;
+      --red-border: #e8b4b0;
+      --green: #1a6b3c;
+      --green-light: #f0f7f3;
+      --green-border: #a8d5bc;
+      --blue: #1a3a6b;
+      --blue-light: #f0f3f7;
+      --blue-border: #a8b8d5;
+      --amber: #7a4f00;
+      --amber-light: #fdf8f0;
+      --amber-border: #e0c890;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--off-white);
+      color: var(--dark);
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    /* ── EMERGENCY BANNER ── */
+    .emergency-banner {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--light-gray);
+      padding: 32px 24px 24px;
+      text-align: center;
+    }
+
+    .id-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--mid-gray);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .patient-name {
+      font-family: var(--sans);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .blood-type-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: white;
+      border-radius: 6px;
+      padding: 8px 20px;
+      margin-top: 12px;
+    }
+
+    .blood-type-badge .bt-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      opacity: 0.85;
+      text-transform: uppercase;
+    }
+
+    .blood-type-badge .bt-value {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--mid-gray);
+      letter-spacing: 0.08em;
+    }
+
+    .meta-item span {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    /* ── MAIN CONTENT ── */
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--light-gray);
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .card-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    /* Card color variants */
+    .card--red .card-header  { background: var(--red-light); border-color: var(--red-border); }
+    .card--red .card-icon    { background: var(--red); color: white; }
+    .card--red .card-title   { color: var(--red); }
+    .card--red               { border-color: var(--red-border); }
+
+    .card--green .card-header { background: var(--green-light); border-color: var(--green-border); }
+    .card--green .card-icon   { background: var(--green); color: white; }
+    .card--green .card-title  { color: var(--green); }
+    .card--green              { border-color: var(--green-border); }
+
+    .card--blue .card-header  { background: var(--blue-light); border-color: var(--blue-border); }
+    .card--blue .card-icon    { background: var(--blue); color: white; }
+    .card--blue .card-title   { color: var(--blue); }
+    .card--blue               { border-color: var(--blue-border); }
+
+    .card--amber .card-header { background: var(--amber-light); border-color: var(--amber-border); }
+    .card--amber .card-icon   { background: var(--amber); color: white; }
+    .card--amber .card-title  { color: var(--amber); }
+    .card--amber              { border-color: var(--amber-border); }
+
+    /* ── DNR CARD ── */
+    .dnr-statement {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1.35;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .dnr-details {
+      font-size: 13px;
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    .dnr-note {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: var(--red-light);
+      border-left: 3px solid var(--red);
+      border-radius: 0 4px 4px 0;
+      font-size: 12px;
+      color: var(--red);
+      font-family: var(--mono);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FIELD LIST ── */
+    .field-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .field-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .field-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+    }
+
+    .field-value {
+      font-size: 14px;
+      color: var(--charcoal);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .field-value.mono {
+      font-family: var(--mono);
+      font-size: 13px;
+    }
+
+    .field-divider {
+      height: 1px;
+      background: var(--light-gray);
+      margin: 4px 0;
+    }
+
+    /* ── ORGAN DONOR ── */
+    .donor-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .donor-chip {
+      background: var(--green-light);
+      border: 1px solid var(--green-border);
+      color: var(--green);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    /* ── ALLERGY PILLS ── */
+    .allergy-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .allergy-pill {
+      background: var(--amber-light);
+      border: 1px solid var(--amber-border);
+      color: var(--amber);
+      border-radius: 4px;
+      padding: 5px 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    /* ── EMERGENCY CONTACT ── */
+    .contact-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* ── CTE REGISTRY LINK ── */
+    .registry-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-decoration: none;
+      border-bottom: 1px solid var(--blue-border);
+      padding-bottom: 1px;
+      margin-top: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .registry-link:hover { opacity: 0.75; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 16px 36px;
+      border-top: 1px solid var(--light-gray);
+      background: var(--white);
+    }
+
+    .footer-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--mid-gray);
+      text-transform: uppercase;
+      line-height: 1.8;
+    }
+
+    .footer-updated {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--mid-gray);
+      margin-top: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 480px) {
+      .patient-name { font-size: 28px; }
+      .contact-block { grid-template-columns: 1fr; }
+      .meta-row { gap: 12px; }
+    }
+
+    /* ── FADE-IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header  { animation: fadeUp 0.4s ease both; }
+    .card:nth-child(1) { animation: fadeUp 0.4s 0.08s ease both; }
+    .card:nth-child(2) { animation: fadeUp 0.4s 0.14s ease both; }
+    .card:nth-child(3) { animation: fadeUp 0.4s 0.20s ease both; }
+    .card:nth-child(4) { animation: fadeUp 0.4s 0.26s ease both; }
+    .card:nth-child(5) { animation: fadeUp 0.4s 0.32s ease both; }
+  </style>
+</head>
+<body>
+
+  <div class="emergency-banner">⚠ &nbsp; Medical Information — For Emergency Use &nbsp; ⚠</div>
+
+  <header>
+    <div class="id-label">Patient Medical ID</div>
+    <div class="patient-name">William Frederick Weppner III</div>
+
+    <div class="blood-type-badge">
+      <span class="bt-label">Blood Type</span>
+      <span class="bt-value">[ — ]</span>
+    </div>
+
+    <div class="meta-row">
+      <div class="meta-item">DOB <span>07/02/1981</span></div>
+      <div class="meta-item">Height <span>6'3"</span></div>
+      <div class="meta-item">Weight <span>190 lbs</span></div>
+      <div class="meta-item">Location <span>Las Vegas, NV</span></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- DNR -->
+    <div class="card card--red">
+      <div class="card-header">
+        <div class="card-icon">✕</div>
+        <div class="card-title">DNR Directive — Do Not Resuscitate</div>
+      </div>
+      <div class="card-body">
+        <div class="dnr-statement">Do Not Resuscitate (DNR)</div>
+        <div class="dnr-details">
+          [ Placeholder — specific DNR instructions, state filing reference, and legal document location to be added. ]
+        </div>
+        <div class="dnr-note">Document reference / state registry # to be confirmed</div>
+      </div>
+    </div>
+
+    <!-- Brain / CTE Donation -->
+    <div class="card card--blue">
+      <div class="card-header">
+        <div class="card-icon">◉</div>
+        <div class="card-title">Brain &amp; CTE Donation Registry</div>
+      </div>
+      <div class="card-body">
+        <div class="field-list">
+          <div class="field-item">
+            <div class="field-label">Registry / Program</div>
+            <div class="field-value">[ Placeholder — e.g. BrainDonor.net / Boston University CTE Center ]</div>
+          </div>
+          <div class="field-divider"></div>
+          <div class="field-item">
+            <div class="field-label">Registration ID</div>
+            <div class="field-value mono">[ — ]</div>
+          </div>
+          <div class="field-item">
+            <div class="field-label">Program Contact</div>
+            <div class="field-value">[ Phone / email of donation program ]</div>
+          </div>
+        </div>
+        <a class="registry-link" href="https://www.braindonorproject.org" target="_blank">↗ Brain Donor Project</a>
+      </div>
+    </div>
+
+    <!-- Organ Donor -->
+    <div class="card card--green">
+      <div class="card-header">
+        <div class="card-icon">♥</div>
+        <div class="card-title">Organ Donor Status</div>
+      </div>
+      <div class="card-body">
+        <div class="field-list">
+          <div class="field-item">
+            <div class="field-label">Status</div>
+            <div class="field-value">Registered Organ Donor — [ confirm registry ]</div>
+          </div>
+          <div class="field-divider"></div>
+          <div class="field-label" style="margin-bottom:8px">Organs Designated for Donation</div>
+          <div class="donor-chips">
+            <span class="donor-chip">Heart</span>
+            <span class="donor-chip">Lungs</span>
+            <span class="donor-chip">Liver</span>
+            <span class="donor-chip">Kidneys</span>
+            <span class="donor-chip">Corneas</span>
+            <span class="donor-chip">[ Edit as needed ]</span>
+          </div>
+          <div class="field-divider" style="margin-top:12px"></div>
+          <div class="field-item" style="margin-top:4px">
+            <div class="field-label">Registry</div>
+            <div class="field-value">Nevada Donor Network / DMV</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Allergies & Medications -->
+    <div class="card card--amber">
+      <div class="card-header">
+        <div class="card-icon">⚠</div>
+        <div class="card-title">Allergies &amp; Medications</div>
+      </div>
+      <div class="card-body">
+        <div class="field-list">
+          <div class="field-item">
+            <div class="field-label">Known Allergies</div>
+            <div class="allergy-list" style="margin-top:6px">
+              <span class="allergy-pill">[ Allergy 1 ]</span>
+              <span class="allergy-pill">[ Allergy 2 ]</span>
+            </div>
+          </div>
+          <div class="field-divider"></div>
+          <div class="field-item">
+            <div class="field-label">Current Medications</div>
+            <div class="field-value">[ Placeholder — list medications and dosages ]</div>
+          </div>
+          <div class="field-divider"></div>
+          <div class="field-item">
+            <div class="field-label">Notable Medical History</div>
+            <div class="field-value">Prior surgeries / implants: Titanium hardware — left elbow; ACL/MCL/PCL reconstruction — left knee. Approx. 8 prior concussions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency Contact -->
+    <div class="card card--blue">
+      <div class="card-header">
+        <div class="card-icon">☎</div>
+        <div class="card-title">Emergency Contact</div>
+      </div>
+      <div class="card-body">
+        <div class="contact-block">
+          <div class="field-item">
+            <div class="field-label">Primary Contact</div>
+            <div class="field-value">[ Name ]</div>
+          </div>
+          <div class="field-item">
+            <div class="field-label">Relationship</div>
+            <div class="field-value">[ Relationship ]</div>
+          </div>
+          <div class="field-item">
+            <div class="field-label">Phone</div>
+            <div class="field-value mono">[ (000) 000-0000 ]</div>
+          </div>
+          <div class="field-item">
+            <div class="field-label">Secondary Phone</div>
+            <div class="field-value mono">[ (000) 000-0000 ]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-label">
+      This page is linked to a personal medical dog tag.<br>
+      Information provided for emergency first-responder use only.
+    </div>
+    <div class="footer-updated">Last updated: May 28, 2026 &nbsp;·&nbsp; weppner58-moto.github.io/medical-id</div>
+  </footer>
+
+</body>
+</html>
